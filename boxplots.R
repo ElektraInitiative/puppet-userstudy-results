@@ -58,7 +58,8 @@ dev.off()
 pdf(file="graphics/poster_all_tasks_duration_boxplot.pdf", width=7, height=6)
 par(mfrow=c(4,1),
     mar=c(2.5,7,2.5,1),
-    cex.axis=1.6)
+    cex.axis=1.6,
+    cex.lab=1)
 
 boxplot(task1.duration_matrix, main="Task 1", horizontal=T, las=1, boxwex=0.5)
 boxplot(task2.1.duration_matrix, main="Task 2.1", horizontal=T, las=1, boxwex=0.7)
@@ -68,6 +69,46 @@ boxplot(task3.duration_matrix, main="Task 3", horizontal=T, las=1, boxwex=0.5)
 par(mfrow=c(1,1),cex.axis=1)
 dev.off()
 
+color.kdb <- "steelblue2"
+color.erb <- "khaki1"
+color.aug <- "lightpink"
+color.host <- "palegreen2"
+color.ini <- "palegreen3"
+color.hostini <- "palegreen"
+
+pdf(file="graphics/poster_dev_tasks_boxplots.pdf", width=13.7, height=4)
+par(mfrow=c(2,1),
+    mar=c(2,7,2.5,1.5),
+    cex.axis=1.6,
+    lwd=1.7,
+    las=1)
+
+boxplot(task1.duration_matrix, main="Task 1", horizontal=T, boxwex=0.5,
+	col=c(color.erb, color.kdb)
+	)
+boxplot(task2.duration_matrix, horizontal=T, main="Task 2.1 + 2.2", boxwex=0.7,
+	col=c(color.hostini, color.aug, color.kdb),
+	names=c("HOST/INI", "AUG", "KDB"))
+
+par(mfrow=c(1,1),
+    lwd=1,
+    cex.axis=1)
+dev.off()
+
+
+pdf(file="graphics/poster_maintenance_tasks_boxplots.pdf", width=13.7, height=2.1)
+par(mfrow=c(1,1),
+    mar=c(2.5,7,2.5,1),
+    lwd=1.7,
+    cex.axis=1.6)
+
+boxplot(task3.duration_matrix, main="Task 3", horizontal=T, las=1, boxwex=0.5,
+	col=c(color.erb, color.kdb))
+
+par(mfrow=c(1,1),
+    lwd=1,
+    cex.axis=1)
+dev.off()
 
 
 # Usability ratings
@@ -85,11 +126,16 @@ ub.method_AUG <- c(ub_matrix[,4], ub_matrix[,7])
 ub.method_INI <- ub.task2.2.a$rating
 
 ub_method_matrix <- cbind(ub.method_ERB,
-			  ub.method_KDB,
 			  ub.method_HOST,
+			  ub.method_INI,
 			  ub.method_AUG,
-			  ub.method_INI)
-colnames(ub_method_matrix) <- c("ERB", "KDB", "HOST", "AUG", "INI")
+			  ub.method_KDB
+			  )
+colnames(ub_method_matrix) <- c("ERB",
+			       	"HOST",
+			       	"INI",
+			       	"AUG",
+				"KDB")
 
 colnames(ub_matrix) <- c("Task 1 ERB", "Task 1 KDB",
 			 "Task 2.1 HOST", "Task 2.1 AUG", "Task 2.1 KDB",
@@ -106,9 +152,13 @@ boxplot(ub_method_matrix, n=c(28,56,14,28,56,14,28,56,28,56),
 	xlab="rating: 1 (very good) ... 5 (very bad)")
 dev.off()
 
-pdf(file="graphics/poster_usability_boxplot.pdf", width=10, height=5)
-par(mar=c(5,7,2,2))
+pdf(file="graphics/poster_usability_boxplot.pdf", width=13.7, height=3)
+par(mar=c(5,7,2,2),
+    lwd=1.7,
+    cex.axis=1.6)
 boxplot(ub_method_matrix, n=c(28,56,14,28,56,14,28,56,28,56),
 	horizontal=T, las=1, boxwex=0.7,
-	xlab="rating: 1 (very good) ... 5 (very bad)")
+	col=c(color.erb, color.host, color.ini, color.aug, color.kdb)
+	)
+par(lwd=1)
 dev.off()
