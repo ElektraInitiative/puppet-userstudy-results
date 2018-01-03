@@ -55,6 +55,20 @@ boxplot(task3.2.group_method_matrix, xlab="duration (sec)", horizontal=T, las=1,
 dev.off()
 
 
+pdf(file="graphics/poster_all_tasks_duration_boxplot.pdf", width=7, height=6)
+par(mfrow=c(4,1),
+    mar=c(2.5,7,2.5,1),
+    cex.axis=1.6)
+
+boxplot(task1.duration_matrix, main="Task 1", horizontal=T, las=1, boxwex=0.5)
+boxplot(task2.1.duration_matrix, main="Task 2.1", horizontal=T, las=1, boxwex=0.7)
+boxplot(task2.2.duration_matrix, main="Task 2.2", horizontal=T, las=1, boxwex=0.7)
+boxplot(task3.duration_matrix, main="Task 3", horizontal=T, las=1, boxwex=0.5)
+
+par(mfrow=c(1,1),cex.axis=1)
+dev.off()
+
+
 
 # Usability ratings
 #
@@ -92,12 +106,9 @@ boxplot(ub_method_matrix, n=c(28,56,14,28,56,14,28,56,28,56),
 	xlab="rating: 1 (very good) ... 5 (very bad)")
 dev.off()
 
-#pdf(file="graphics/usability_boxplot_sep.pdf", width=10, height=5)
-#par(mar=c(5,7,2,2))
-#par(mfrow=c(3,1))
-#
-#boxplot(ub.method_ERB, xlab="rating: 1 (good) ... 5 (bad)", horizontal=T, las=1,
-#	boxwex=0.7, group=c("ERB"), 
-#
-#par(mfrow=c(1,1))
-#dev.off()
+pdf(file="graphics/poster_usability_boxplot.pdf", width=10, height=5)
+par(mar=c(5,7,2,2))
+boxplot(ub_method_matrix, n=c(28,56,14,28,56,14,28,56,28,56),
+	horizontal=T, las=1, boxwex=0.7,
+	xlab="rating: 1 (very good) ... 5 (very bad)")
+dev.off()
