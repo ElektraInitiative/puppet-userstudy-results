@@ -76,17 +76,30 @@ color.host <- "palegreen2"
 color.ini <- "palegreen3"
 color.hostini <- "palegreen"
 
-pdf(file="graphics/poster_dev_tasks_boxplots.pdf", width=13.7, height=4)
-par(mfrow=c(2,1),
-    mar=c(2,7,2.5,1.5),
+pdf(file="graphics/poster_task_1_boxplots.pdf", width=13.7, height=2.1)
+par(mfrow=c(1,1),
+    mar=c(2.5,7,2.5,1),
     cex.axis=1.6,
     lwd=1.7,
     las=1)
 
-boxplot(task1.duration_matrix, main="Task 1", horizontal=T, boxwex=0.5,
+boxplot(task1.duration_matrix, horizontal=T, boxwex=0.5,
 	col=c(color.erb, color.kdb)
 	)
-boxplot(task2.duration_matrix, horizontal=T, main="Task 2.1 + 2.2", boxwex=0.7,
+
+par(mfrow=c(1,1),
+    lwd=1,
+    cex.axis=1)
+dev.off()
+
+
+pdf(file="graphics/poster_task_2_boxplots.pdf", width=13.7, height=2.5)
+par(mfrow=c(1,1),
+    mar=c(2.5,7,2.5,1),
+    cex.axis=1.6,
+    lwd=1.7,
+    las=1)
+boxplot(task2.duration_matrix, horizontal=T, boxwex=0.5,
 	col=c(color.hostini, color.aug, color.kdb),
 	names=c("HOST/INI", "AUG", "KDB"))
 
@@ -96,13 +109,13 @@ par(mfrow=c(1,1),
 dev.off()
 
 
-pdf(file="graphics/poster_maintenance_tasks_boxplots.pdf", width=13.7, height=2.1)
+pdf(file="graphics/poster_task_3_boxplots.pdf", width=13.7, height=2.1)
 par(mfrow=c(1,1),
     mar=c(2.5,7,2.5,1),
     lwd=1.7,
     cex.axis=1.6)
 
-boxplot(task3.duration_matrix, main="Task 3", horizontal=T, las=1, boxwex=0.5,
+boxplot(task3.duration_matrix, horizontal=T, las=1, boxwex=0.5,
 	col=c(color.erb, color.kdb))
 
 par(mfrow=c(1,1),
